@@ -21,7 +21,7 @@ function iniciarTemporizador() {
 
 function display_text() {
     limpiar()
-
+    iniciarTemporizador();
     const $tr = document.createElement("tr");
     let $tTexto = document.createElement("img");
     $tTexto.src = ("img/_quest/texto" + numeroAct + "/texto" + numeroAct + ".png")
