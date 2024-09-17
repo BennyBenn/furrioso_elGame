@@ -1,0 +1,55 @@
+body{
+    background-color: black;
+}
+.loba{
+    position:relative;
+    display: block;
+    text-align: center;
+    padding: 60px;
+    text-decoration:none;
+    overflow:hidden;
+}
+.titulo {
+    text-align: center;
+    color: #9900ff;
+    font-family: Georgia;
+    padding: 20px;
+    animation: titleAnimation 2s forwards; 
+}
+
+@keyframes titleAnimation {
+    0% {
+        transform: translateY(-100px); 
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1; 
+    }
+}
+#textbox, #button {
+    position: absolute; 
+    width: 25%; 
+    padding: 10px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    text-align: center;
+}
+
+#textbox {
+    top: 80%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px; 
+}
+
+#button {
+    top: 82.2%; 
+    left: 50%; 
+    transform: translate(-50%, 0); 
+    background-color: #9900ff;
+    color: #fff; 
+    cursor: pointer; 
+}
+
