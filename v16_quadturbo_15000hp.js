@@ -3,6 +3,7 @@ let numeroAct=1;
 
 function display_text(){
     limpiar()
+    //iniciarTemporizador()
 
     const $tr = document.createElement("tr");
     let $tTexto=document.createElement("img");
@@ -73,3 +74,19 @@ function display_qa(){
     $_cuerpo_tabla.appendChild($tr);
 
 }
+
+/*
+function iniciarTemporizador() {
+    temporizador = setInterval(function() {
+      tiempoTranscurrido++;
+      temporizadorElement.innerHTML = Tiempo transcurrido: ${tiempoTranscurrido} segundos; // actualiza el elemento HTML
+      console.log(Tiempo transcurrido: ${tiempoTranscurrido} segundos);
+      if (tiempoTranscurrido >= tiempoLimite) {
+        clearInterval(temporizador); // detiene el temporizador
+        alert(Tiempo límite alcanzado! (${tiempoLimite} segundos)); 
+      }
+    }, 1000); // ejecuta la función cada 1 segundo (1000 milisegundos)
+  }
+  */
+  
+  

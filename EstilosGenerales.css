@@ -447,3 +447,16 @@ body::before{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7); /* opacidad 50% */
 }
+
+#temporizador {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
