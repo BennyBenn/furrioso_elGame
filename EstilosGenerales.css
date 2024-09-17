@@ -421,3 +421,8 @@
     background-color: aqua;
     padding: 0 2rem o 2rem;
 }
+
+body{
+    background-image: url(/img/bck.jpg);
+    background-size:contain;
+}
