@@ -75,6 +75,7 @@ function display_qa(){
 
 }
 
+
 /*
 function iniciarTemporizador() {
     temporizador = setInterval(function() {
