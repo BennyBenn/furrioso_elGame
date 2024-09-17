@@ -391,6 +391,15 @@
     justify-content: space-around;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
+.card::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(40%);
+}
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -409,9 +418,13 @@
 
 .card-question{
     text-align: justify;    
-    border: 1px groove #8e8c8c;
+    border: 3px groove #8e8c8c;
     border-radius: 8px;
     margin-left: 2rem;
+    margin-top: 5px;
+}
+.card-question img{
+    width: 100%;
 }
 .text-left {
     text-align: left !important;
@@ -427,12 +440,21 @@
 
 .fo{
     width: 100%;
-    margin-top: 20%;
     background-color: aqua;
     padding: 0 2rem o 2rem;
+    size: cover;
 }
 
 body{
-    background-image: url(/img/bck.jpg);
+    background-image: url('img/fondo2.jpg');
     background-size:contain;
+}
+body::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* opacidad 50% */
 }
