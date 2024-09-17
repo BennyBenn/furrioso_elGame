@@ -1,20 +1,46 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
 let numeroAct = 1;
-
+nombre = "";
 let tiempoLimite = 5; // tiempo límite en segundos
 let tiempoTranscurrido = 0; // tiempo transcurrido en segundos
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); // elemento 
 
+///////////////////////////////////////////////////////////
+function guardarNombre() {
+    nombre = document.getElementById("textbox").value;
+
+    if (nombre === "") {
+        alert("Por favor ingresa un nombre");
+    } else {
+        let audio = document.getElementById("audio");
+        audio.play();
+        audio.onended = function () {
+            window.location.href = "furroso.html"
+            document.getElementById('_nombre_user').innerText = nombre;
+        };
+    }
+}
+
+function getRandomImage() {
+    const imagesFolder = 'img/_backgrounds/';
+    const numImages = 10;
+    const randomIndex = Math.floor(Math.random() * numImages) + 1;
+    const randomImage = imagesFolder + randomIndex + '.png';
+
+    document.body.style.backgroundImage = url(${randomImage});
+}
+window.onload = getRandomImage;
+
 function iniciarTemporizador() {
     temporizador = setInterval(function () {
         tiempoTranscurrido++;
-        temporizadorElement.innerHTML = `Tiempo transcurrido: ${tiempoTranscurrido} segundos`; // actualiza el elemento HTML
-        console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
+        temporizadorElement.innerHTML = Tiempo transcurrido: ${tiempoTranscurrido} segundos; // actualiza el elemento HTML
+        console.log(Tiempo transcurrido: ${tiempoTranscurrido} segundos);
         if (tiempoTranscurrido >= tiempoLimite) {
             clearInterval(temporizador); // detiene el temporizador
-            tiempoTranscurrido=0;
-            //alert(`Tiempo límite alcanzado! (${tiempoLimite} segundos)`);
+            tiempoTranscurrido = 0;
+            //alert(Tiempo límite alcanzado! (${tiempoLimite} segundos));
         }
     }, 1000); // ejecuta la función cada 1 segundo (1000 milisegundos)
 }
