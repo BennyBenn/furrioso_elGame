@@ -1,5 +1,5 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
-let salidas=[];
+let numeroAct=1;
 
 function display_text(){
     limpiar()
