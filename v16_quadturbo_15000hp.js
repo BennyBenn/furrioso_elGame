@@ -11,5 +11,7 @@ function display_text(){
 }
 
 function display_qa(){
-    
+    while ($_cuerpo_tabla.firstChild) {
+        $_cuerpo_tabla.removeChild($_cuerpo_tabla.firstChild);
+    }
 }
