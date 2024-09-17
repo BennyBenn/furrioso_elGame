@@ -6,7 +6,7 @@ function display_text(){
 
     const $tr = document.createElement("tr");
     let $tTexto=document.createElement("img");
-    $tTexto.src=("img/_quest/texto1/texto1.png")
+    $tTexto.src=("img/_quest/texto"+numeroAct+"/texto"+numeroAct+".png")
     $tTexto.style.width="100%";
     $tTexto.style.height="100%";
     $_cuerpo_tabla.appendChild($tTexto); 
@@ -18,13 +18,19 @@ function limpiar(){
     }
 }
 
+function siguente_p(){
+    limpiar();
+    numeroAct++<
+    display_text();
+}
+
 function display_qa(){    
     limpiar()
 
     const $tr = document.createElement("tr");
 
     let $tPregunta=document.createElement("img");
-    $tPregunta.src=("img/_quest/texto1/pregunta 1/p1.png")
+    $tPregunta.src=("img/_quest/texto"+numeroAct+"/pregunta "+numeroAct+"/p"+numeroAct+".png")
     $tPregunta.style.width="100%";
     $tPregunta.style.height="100%";
 
@@ -35,7 +41,7 @@ function display_qa(){
     ////////////
 
     let $tRes1=document.createElement("img");
-    $tRes1.src=("img/_quest/texto1/pregunta 1/respuestas/r1.png")
+    $tRes1.src=("img/_quest/texto"+numeroAct+"/pregunta "+numeroAct+"/respuestas/r1.png")
     $tRes1.style.width="100%";
     $tRes1.style.height="20%";
 
@@ -43,7 +49,7 @@ function display_qa(){
     $_cuerpo_tabla.appendChild($tr); 
 
     let $tRes2=document.createElement("img");
-    $tRes2.src=("img/_quest/texto1/pregunta 1/respuestas/r2.png")
+    $tRes2.src=("img/_quest/texto"+numeroAct+"/pregunta "+numeroAct+"/respuestas/r2.png")
     $tRes2.style.width="100%";
     $tRes2.style.height="20%";
 
@@ -51,7 +57,7 @@ function display_qa(){
     $_cuerpo_tabla.appendChild($tr);
 
     let $tRes3=document.createElement("img");
-    $tRes3.src=("img/_quest/texto1/pregunta 1/respuestas/r3.png")
+    $tRes3.src=("img/_quest/texto"+numeroAct+"/pregunta "+numeroAct+"/respuestas/r3.png")
     $tRes3.style.width="100%";
     $tRes3.style.height="20%";
 
@@ -59,7 +65,7 @@ function display_qa(){
     $_cuerpo_tabla.appendChild($tr);
 
     let $tRes4=document.createElement("img");
-    $tRes4.src=("img/_quest/texto1/pregunta 1/respuestas/r4.png")
+    $tRes4.src=("img/_quest/texto"+numeroAct+"/pregunta "+numeroAct+"/respuestas/r4.png")
     $tRes4.style.width="100%";
     $tRes4.style.height="20%";
 
