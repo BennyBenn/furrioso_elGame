@@ -1,5 +1,21 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
+const $_mona_china = document.querySelector("#_mona_china");
+
 let numeroAct=1;
+
+function cambiar_mona(){
+    const numImages = 19; 
+    const randomIndex = Math.floor(Math.random() * numImages) + 1; 
+
+    let $tMona=document.createElement("img");
+    $tMona.src=("img/_girl/_porttrait/a("+randomIndex+").png")
+    
+    const $tr = document.createElement("tr");
+    $_mona_china.appendChild($tr); 
+    $_mona_china.appendChild($tMona); 
+
+}
+cambiar_mona();
 
 function display_text(){
     limpiar()
