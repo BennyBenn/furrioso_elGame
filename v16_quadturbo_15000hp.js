@@ -59,7 +59,7 @@ function display_text() {
     $_cuerpo_tabla.appendChild($tTexto);
     setTimeout(function () {
         display_qa();
-    }, 15000)
+    }, 5000)
 
     //display_qa();
     /*$tTexto.src=("img/_quest/texto"+numeroAct+"/texto"+numeroAct+".png")
@@ -76,11 +76,14 @@ function limpiar() {
 
 function siguente_p() {
     limpiar();
+    display_text();
+}
+
+function siguiente_text(){
+    limpiar();
     numeroAct++ <
         display_text();
 }
-
-
 
 let selectedButton = null; // Variable para guardar el botón seleccionado
 let textoIndex = 1; // Variable para controlar el texto o sección actual
@@ -118,6 +121,7 @@ function display_qa() {
     let $buttonRes4 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
     $_cuerpo_tabla.appendChild($buttonRes4);
     $_cuerpo_tabla.appendChild($tr);
+    numeroAct++;
 }
 
 // Función para crear un botón con una imagen
@@ -159,22 +163,25 @@ function handleAnswerClick(buttonElement, answerNumber) {
         puntosLabel.innerText = "Puntos: " + puntos; // Mostrar puntos en el label
 
         // Incrementar el número de la pregunta y manejar el avance
-        numeroAct++; // Incrementar el número de la pregunta
+         // Incrementar el número de la pregunta
 
         // Si el número de la pregunta es mayor que 4, avanzar al siguiente texto
-        if (numeroAct > 4) {
+        if (numeroAct == 5) {
             numeroAct = 1; // Reiniciar el número de la pregunta
             textoIndex++; // Avanzar al siguiente texto o sección
+            siguente_p();            
+        }else {
+            //display_qa();
+             // Mostrar la siguiente pregunta
         }
 
-        display_qa(); // Mostrar la siguiente pregunta
     } else {
         buttonElement.style.border = "5px solid red"; // Borde rojo para otras respuestas
     }
-
+    numeroAct++;
     // Actualiza el botón seleccionado
     selectedButton = buttonElement;
 }
 
 // Inicializar la primera pregunta
-display_qa();
+display_text();
