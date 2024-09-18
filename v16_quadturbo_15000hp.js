@@ -1,6 +1,5 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
 var nameUser = document.getElementById("_nombre_user");
-
 let numeroAct = 1;
 let numeroAct1 = 1;
 let puntaje=0;
