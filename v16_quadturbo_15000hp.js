@@ -11,6 +11,7 @@ let temporizadorElement = document.getElementById("temporizador");
 
 let selectedButton = null; 
 let textoIndex = 1; 
+let limiteTextos = 5;
 let puntos = 0; 
 let puntosLabel = document.getElementById("_puntuacion_user"); 
 const $_tempo = document.querySelector("#temporizador");
@@ -77,6 +78,7 @@ function iniciarTemporizador() {
 function display_text() {
     console.log(textoIndex);
     console.log("Acaba de imprimir el texto numero: "+textoIndex);
+    if(textoIndex === limiteTextos) textoIndex=1;    
     $_tempo.style.display="";    
     monas();
     limpiar()
@@ -103,7 +105,8 @@ function limpiar_monas() {
 
 function siguente_p() {
     limpiar();
-    textoIndex++;
+    if(textoIndex === limiteTextos) textoIndex=1;
+    else textoIndex++;
     numeroAct = 1;
     display_text();
 }
