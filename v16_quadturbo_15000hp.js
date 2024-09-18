@@ -1,6 +1,7 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
+const $_cuerpo_mona = document.querySelector("#_mona_china");
 var nameUser = document.getElementById("_nombre_user");
-let numeroAct = 1;
+let numeroAct = 0;
 let puntaje=0;
 var nombre = "";
 let tiempoLimite = 6; 
@@ -8,13 +9,30 @@ let tiempoTranscurrido = 0;
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); 
 
-
-
 let selectedButton = null; 
 let textoIndex = 1; 
 let puntos = 0; 
 let puntosLabel = document.getElementById("_puntuacion_user"); 
 const $_tempo = document.querySelector("#temporizador");
+let mona=2;
+
+
+
+function monas(){
+    limpiar_monas();
+    //limpiar()
+    //iniciarTemporizador();
+    const $tr = document.createElement("tr");
+    let $tMona = document.createElement("img");
+    $tMona.src = ("img/_girl/_porttrait/a("+mona+").png")
+    $tMona.style.width = "100%";
+    $tMona.style.height = "100%";
+    //$tMona.style.justifyContent = "space-around";
+    $tMona.style.alignItems = "right";
+    $_cuerpo_mona.appendChild($tr);
+    $_cuerpo_mona.appendChild($tMona);
+    mona++;
+}
 
 ///////////////////////////////////////////////////////////
 function guardarNombre() {
@@ -53,6 +71,10 @@ function iniciarTemporizador() {
 }
 
 function display_text() {
+    console.log(textoIndex);
+    console.log("Acaba de imprimir el texto numero: "+textoIndex);
+    $_tempo.style.display="";    
+    monas();
     limpiar()
     iniciarTemporizador();
     const $tr = document.createElement("tr");
@@ -61,13 +83,18 @@ function display_text() {
     $tTexto.style.width = "100%";
     $tTexto.style.height = "100%";
     $_cuerpo_tabla.appendChild($tTexto);
-    setTimeout(function () {
+    numeroAct=1;
+    setTimeout(function () {        
         display_qa();
-    }, 5000)
+    }, 5000)    
 }
 
 function limpiar() {
     while ($_cuerpo_tabla.firstChild) $_cuerpo_tabla.removeChild($_cuerpo_tabla.firstChild);
+}
+
+function limpiar_monas() {
+    while ($_cuerpo_mona.firstChild) $_cuerpo_mona.removeChild($_cuerpo_mona.firstChild);
 }
 
 function siguente_p() {
@@ -87,6 +114,8 @@ function display_qa() {
     $_tempo.style.display="none";
     limpiar(); 
     const $tr = document.createElement("tr"); 
+
+    console.log("texto index:" + textoIndex+ "numeroAct:" +numeroAct);
 
     let $tPregunta = document.createElement("img");
     $tPregunta.src = "img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/p" + numeroAct + ".png";
@@ -112,7 +141,6 @@ function display_qa() {
     let $buttonRes4 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
     $_cuerpo_tabla.appendChild($buttonRes4);
     $_cuerpo_tabla.appendChild($tr);
-    numeroAct++;
 }
 
 function createAnswerButton(imageSrc, answerNumber) {
@@ -127,6 +155,7 @@ function createAnswerButton(imageSrc, answerNumber) {
     $img.src = imageSrc;
     $img.style.width = "100%";
     $img.style.height = "100%";
+    //$img.style.justifyContent = "space-between";
 
     $button.appendChild($img);
 
@@ -145,10 +174,12 @@ function handleAnswerClick(buttonElement, answerNumber) {
         buttonElement.style.border = "5px solid green"; 
         puntos += 100; 
         puntosLabel.innerText = "Puntos: " + puntos; 
-        if (numeroAct == 4)  siguente_p();            
+        if (numeroAct >= 4) {textoIndex++; display_text();    }
+        else display_qa();        
     } else buttonElement.style.border = "5px solid red"; 
     numeroAct++;
     selectedButton = buttonElement;
+    display_qa()
 }
 
 display_text();
