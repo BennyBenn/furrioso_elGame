@@ -1,4 +1,4 @@
-let nombre;
+   /*let nombre;
 
         function guardarNombre() {
             nombre = document.getElementById("textbox").value;
@@ -12,7 +12,7 @@ let nombre;
                 };
              }
           
-        }
+        }*/
 
         function getRandomImage() {
             const imagesFolder = 'img/_backgrounds/';

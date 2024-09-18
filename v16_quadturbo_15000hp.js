@@ -4,7 +4,7 @@ var nameUser = document.getElementById("_nombre_user");
 let numeroAct = 0;
 let puntaje=0;
 var nombre = "";
-let tiempoLimite = 5; 
+let tiempoLimite = 10; 
 let tiempoTranscurrido = 0; 
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); 
@@ -61,7 +61,7 @@ function getRandomImage() {
     const randomImage = imagesFolder + randomIndex + '.png';
 }
 window.onload = getRandomImage;
-
+/*
 function iniciarTemporizador() {
     temporizador = setInterval(function () {
         tiempoTranscurrido++;
@@ -74,7 +74,62 @@ function iniciarTemporizador() {
     }, 1000); 
     tiempoTranscurrido = 0;
 }
+*/
+function iniciarTemporizador() {
+    temporizador = setInterval(function() {
+      tiempoTranscurrido++;
+      temporizadorElement.innerHTML = `Tiempo transcurrido: ${tiempoTranscurrido} segundos`;
+      console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
+      if (tiempoTranscurrido >= tiempoLimite) {
+        clearInterval(temporizador);
+        tiempoTranscurrido = 0;
+        // pasamos a la siguiente pregunta cuando el temporizador llega al límite
+        textoIndex = siguientePregunta();
+        display_text();
+      }
+    }, 1000);
+    tiempoTranscurrido = 0;
+  }
+let preguntasMostradas = []; // array que almacena los índices de las preguntas que ya se han mostrado
 
+function display_text() {
+    console.log(textoIndex);
+    console.log("Acaba de imprimir el texto numero: " + textoIndex);
+    if (preguntasMostradas.includes(textoIndex)) {
+      // si la pregunta ya se ha mostrado, pasamos a la siguiente
+      textoIndex = siguientePregunta();
+    } else {
+      preguntasMostradas.push(textoIndex); // agregamos la pregunta actual al array
+    }
+    $_tempo.style.display = "";
+    monas();
+    limpiar();
+    clearInterval(temporizador); // detenemos el temporizador actual
+    tiempoTranscurrido = 0; // restamos el tiempo transcurrido a 0
+    iniciarTemporizador(); // iniciamos un nuevo temporizador
+    const $tr = document.createElement("tr");
+    let $tTexto = document.createElement("img");
+    $tTexto.src = ("img/_quest/texto" + textoIndex + "/texto" + textoIndex + ".png");
+    $tTexto.style.width = "100%";
+    $tTexto.style.height = "100%";
+    $_cuerpo_tabla.appendChild($tTexto);
+    numeroAct = 1;
+    setTimeout(function() {
+      display_qa();
+    }, 5000);
+  }
+
+function siguientePregunta() {
+  // función que devuelve el índice de la siguiente pregunta que no se ha mostrado
+  for (let i = 1; i <= limiteTextos; i++) {
+    if (!preguntasMostradas.includes(i)) {
+      return i;
+    }
+  }
+  // si todas las preguntas se han mostrado, volvemos a empezar desde la primera
+  return 1;
+}
+/*
 function display_text() {
     console.log(textoIndex);
     console.log("Acaba de imprimir el texto numero: "+textoIndex);
@@ -94,7 +149,7 @@ function display_text() {
         display_qa();
     }, 5000)    
 }
-
+*/
 function limpiar() {
     while ($_cuerpo_tabla.firstChild) $_cuerpo_tabla.removeChild($_cuerpo_tabla.firstChild);
 }
@@ -123,7 +178,7 @@ function display_qa() {
     const $tr = document.createElement("tr"); 
 
     console.log("texto index:" + textoIndex+ "numeroAct:" +numeroAct);
-
+    tiempoTranscurrido=0;
     let $tPregunta = document.createElement("img");
     $tPregunta.src = "img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/p" + numeroAct + ".png";
     $tPregunta.style.width = "100%";
