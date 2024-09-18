@@ -1,9 +1,7 @@
 const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
-var nameUser = document.getElementById("_nombre_user");
 let numeroAct = 1;
-let numeroAct1 = 1;
-var nombre = "";
-let tiempoLimite = 6; // tiempo límite en segundos
+nombre = "";
+let tiempoLimite = 5; // tiempo límite en segundos
 let tiempoTranscurrido = 0; // tiempo transcurrido en segundos
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); // elemento 
@@ -11,28 +9,31 @@ let temporizadorElement = document.getElementById("temporizador"); // elemento
 ///////////////////////////////////////////////////////////
 function guardarNombre() {
     nombre = document.getElementById("textbox").value;
-    localStorage.setItem('nombre',nombre);
+
     if (nombre === "") {
         alert("Por favor ingresa un nombre");
     } else {
         let audio = document.getElementById("audio");
         audio.play();
         audio.onended = function () {
-            window.location.href = "furroso.html"            
+            window.location.href = "furroso.html"
+            document.getElementById('_nombre_user').innerText = nombre;
         };
     }
 }
-var name = localStorage.getItem('nombre');
-nameUser.innerHTML = name;
 
 function getRandomImage() {
     const imagesFolder = 'img/_backgrounds/';
     const numImages = 10;
     const randomIndex = Math.floor(Math.random() * numImages) + 1;
-    const randomImage = imagesFolder + randomIndex + '.png';
-    //document.body.style.backgroundImage = url(`${randomImage}`);
+    const randomImage = `${imagesFolder}${randomIndex}.png`;
+
+    console.log(randomImage);
+
+    document.body.style.backgroundImage = `url(${randomImage})`;
 }
-window.onload = getRandomImage;
+
+window.onload = getRandomImage();
 
 function iniciarTemporizador() {
     temporizador = setInterval(function () {
@@ -79,19 +80,12 @@ function siguente_p() {
         display_text();
 }
 
-
-
-let selectedButton = null; // Variable para guardar el botón seleccionado
-let textoIndex = 1; // Variable para controlar el texto o sección actual
-
-// Función para mostrar preguntas y respuestas en la tabla
 function display_qa() {
-    limpiar(); // Limpia cualquier contenido previo en la tabla
-    const $tr = document.createElement("tr"); // Crea una nueva fila para la tabla
+    limpiar()
+    const $tr = document.createElement("tr");
 
-    // Crear y agregar la imagen de la pregunta
     let $tPregunta = document.createElement("img");
-    $tPregunta.src = "img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/p" + numeroAct + ".png";
+    $tPregunta.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/p" + numeroAct + ".png")
     $tPregunta.style.width = "100%";
     $tPregunta.style.height = "100%";
 
@@ -99,81 +93,38 @@ function display_qa() {
     $_cuerpo_tabla.appendChild($tPregunta);
     $_cuerpo_tabla.appendChild($tr);
 
-    // Crear y agregar botones de respuesta
-    let $buttonRes1 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r1.png", 1);
-    $_cuerpo_tabla.appendChild($buttonRes1);
+    ////////////
+
+    let $tRes1 = document.createElement("img");
+    $tRes1.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r1.png")
+    $tRes1.style.width = "100%";
+    $tRes1.style.height = "20%";
+
+    $_cuerpo_tabla.appendChild($tRes1);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $buttonRes2 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r2.png", 2);
-    $_cuerpo_tabla.appendChild($buttonRes2);
+    let $tRes2 = document.createElement("img");
+    $tRes2.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r2.png")
+    $tRes2.style.width = "100%";
+    $tRes2.style.height = "20%";
+
+    $_cuerpo_tabla.appendChild($tRes2);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $buttonRes3 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r3.png", 3);
-    $_cuerpo_tabla.appendChild($buttonRes3);
+    let $tRes3 = document.createElement("img");
+    $tRes3.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r3.png")
+    $tRes3.style.width = "100%";
+    $tRes3.style.height = "20%";
+
+    $_cuerpo_tabla.appendChild($tRes3);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $buttonRes4 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
-    $_cuerpo_tabla.appendChild($buttonRes4);
+    let $tRes4 = document.createElement("img");
+    $tRes4.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r4.png")
+    $tRes4.style.width = "100%";
+    $tRes4.style.height = "20%";
+
+    $_cuerpo_tabla.appendChild($tRes4);
     $_cuerpo_tabla.appendChild($tr);
+
 }
-
-// Función para crear un botón con una imagen
-function createAnswerButton(imageSrc, answerNumber) {
-    let $button = document.createElement("button");
-    $button.style.width = "100%";
-    $button.style.height = "20%";
-    $button.style.padding = "0"; 
-    $button.style.border = "none"; // Quita el borde por defecto del botón
-    $button.style.backgroundColor = "transparent"; // Hace que el fondo sea transparente
-
-    let $img = document.createElement("img");
-    $img.src = imageSrc;
-    $img.style.width = "100%";
-    $img.style.height = "100%";
-
-    $button.appendChild($img);
-
-    // Agregar evento de clic al botón
-    $button.addEventListener("click", function() {
-        handleAnswerClick($button, answerNumber);  // Llamar función para manejar el clic
-    });
-
-    return $button;
-}
-
-// Función para manejar el clic en un botón de respuesta
-function handleAnswerClick(buttonElement, answerNumber) {
-    // Recorre todos los botones y elimina el borde si no están seleccionados
-    const buttons = document.querySelectorAll("button"); // Selecciona todos los botones
-    buttons.forEach(button => {
-        button.style.border = "none"; // Elimina el borde de todos los botones
-    });
-
-    // Agregar un borde verde o rojo según la respuesta seleccionada
-    if (answerNumber === 2) {
-        buttonElement.style.border = "5px solid green"; // Borde verde para la respuesta 2
-    } else {
-        buttonElement.style.border = "5px solid red"; // Borde rojo para otras respuestas
-    }
-
-    // Actualiza el botón seleccionado
-    selectedButton = buttonElement;
-
-    // Incrementar el número de la pregunta y manejar el avance
-    if (numeroAct1 >= 3) {
-        numeroAct++; // Incrementar el número de la pregunta
-
-        if (numeroAct > 4) { // Si el número de la pregunta es mayor que 4
-            numeroAct = 1; // Reiniciar el número de la pregunta
-            textoIndex++; // Avanzar al siguiente texto o sección
-        }
-
-        numeroAct1 = 1; // Reiniciar el número de respuestas
-        display_qa(); // Mostrar la siguiente pregunta
-    } else {
-        numeroAct1++; // Incrementar el número de respuestas
-    }
-}
-
-// Inicializar la primera pregunta
-display_qa();
