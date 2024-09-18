@@ -12,31 +12,28 @@ let temporizadorElement = document.getElementById("temporizador"); // elemento
 ///////////////////////////////////////////////////////////
 function guardarNombre() {
     nombre = document.getElementById("textbox").value;
-
+    localStorage.setItem('nombre',nombre);
     if (nombre === "") {
         alert("Por favor ingresa un nombre");
     } else {
         let audio = document.getElementById("audio");
         audio.play();
         audio.onended = function () {
-            window.location.href = "furroso.html"
-            document.getElementById('_nombre_user').innerText = nombre;
+            window.location.href = "furroso.html"            
         };
     }
 }
+var name = localStorage.getItem('nombre');
+nameUser.innerHTML = name;
 
 function getRandomImage() {
     const imagesFolder = 'img/_backgrounds/';
     const numImages = 10;
     const randomIndex = Math.floor(Math.random() * numImages) + 1;
-    const randomImage = `${imagesFolder}${randomIndex}.png`;
-
-    console.log(randomImage);
-
-    document.body.style.backgroundImage = `url(${randomImage})`;
+    const randomImage = imagesFolder + randomIndex + '.png';
+    //document.body.style.backgroundImage = url(`${randomImage}`);
 }
-
-window.onload = getRandomImage();
+window.onload = getRandomImage;
 
 function iniciarTemporizador() {
     temporizador = setInterval(function () {
@@ -92,11 +89,12 @@ let puntosLabel = document.getElementById("_puntuacion_user"); // Label para mos
 
 // Función para mostrar preguntas y respuestas en la tabla
 function display_qa() {
-    limpiar()
-    const $tr = document.createElement("tr");
+    limpiar(); // Limpia cualquier contenido previo en la tabla
+    const $tr = document.createElement("tr"); // Crea una nueva fila para la tabla
 
+    // Crear y agregar la imagen de la pregunta
     let $tPregunta = document.createElement("img");
-    $tPregunta.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/p" + numeroAct + ".png")
+    $tPregunta.src = "img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/p" + numeroAct + ".png";
     $tPregunta.style.width = "100%";
     $tPregunta.style.height = "100%";
 
@@ -104,38 +102,21 @@ function display_qa() {
     $_cuerpo_tabla.appendChild($tPregunta);
     $_cuerpo_tabla.appendChild($tr);
 
-    ////////////
-
-    let $tRes1 = document.createElement("img");
-    $tRes1.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r1.png")
-    $tRes1.style.width = "100%";
-    $tRes1.style.height = "20%";
-
-    $_cuerpo_tabla.appendChild($tRes1);
+    // Crear y agregar botones de respuesta
+    let $buttonRes1 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r1.png", 1);
+    $_cuerpo_tabla.appendChild($buttonRes1);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $tRes2 = document.createElement("img");
-    $tRes2.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r2.png")
-    $tRes2.style.width = "100%";
-    $tRes2.style.height = "20%";
-
-    $_cuerpo_tabla.appendChild($tRes2);
+    let $buttonRes2 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r2.png", 2);
+    $_cuerpo_tabla.appendChild($buttonRes2);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $tRes3 = document.createElement("img");
-    $tRes3.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r3.png")
-    $tRes3.style.width = "100%";
-    $tRes3.style.height = "20%";
-
-    $_cuerpo_tabla.appendChild($tRes3);
+    let $buttonRes3 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r3.png", 3);
+    $_cuerpo_tabla.appendChild($buttonRes3);
     $_cuerpo_tabla.appendChild($tr);
 
-    let $tRes4 = document.createElement("img");
-    $tRes4.src = ("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r4.png")
-    $tRes4.style.width = "100%";
-    $tRes4.style.height = "20%";
-
-    $_cuerpo_tabla.appendChild($tRes4);
+    let $buttonRes4 = createAnswerButton("img/_quest/texto" + textoIndex + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
+    $_cuerpo_tabla.appendChild($buttonRes4);
     $_cuerpo_tabla.appendChild($tr);
 }
 
