@@ -2,7 +2,7 @@ const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
 var nameUser = document.getElementById("_nombre_user");
 let numeroAct = 1;
 var nombre = "";
-let tiempoLimite = 5; // tiempo límite en segundos
+let tiempoLimite = 6; // tiempo límite en segundos
 let tiempoTranscurrido = 0; // tiempo transcurrido en segundos
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); // elemento 
@@ -78,6 +78,83 @@ function siguente_p() {
         display_text();
 }
 
+let selectedButton = null; // Variable para guardar el botón seleccionado
+
+function display_qa() {
+    limpiar();
+    const $tr = document.createElement("tr");
+
+    let $tPregunta = document.createElement("img");
+    $tPregunta.src = "img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/p" + numeroAct + ".png";
+    $tPregunta.style.width = "100%";
+    $tPregunta.style.height = "100%";
+
+    $_cuerpo_tabla.appendChild($tr);
+    $_cuerpo_tabla.appendChild($tPregunta);
+    $_cuerpo_tabla.appendChild($tr);
+
+    // Respuesta 1
+    let $buttonRes1 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r1.png", 1);
+    $_cuerpo_tabla.appendChild($buttonRes1);
+    $_cuerpo_tabla.appendChild($tr);
+
+    // Respuesta 2
+    let $buttonRes2 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r2.png", 2);
+    $_cuerpo_tabla.appendChild($buttonRes2);
+    $_cuerpo_tabla.appendChild($tr);
+
+    // Respuesta 3
+    let $buttonRes3 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r3.png", 3);
+    $_cuerpo_tabla.appendChild($buttonRes3);
+    $_cuerpo_tabla.appendChild($tr);
+
+    // Respuesta 4
+    let $buttonRes4 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
+    $_cuerpo_tabla.appendChild($buttonRes4);
+    $_cuerpo_tabla.appendChild($tr);
+}
+
+// Función para crear un botón con una imagen
+function createAnswerButton(imageSrc, answerNumber) {
+    let $button = document.createElement("button");
+    $button.style.width = "100%";
+    $button.style.height = "20%";
+    $button.style.padding = "0"; // Elimina cualquier padding extra para que la imagen llene todo el botón
+    $button.style.border = "none"; // Quita el borde por defecto del botón
+    $button.style.backgroundColor = "transparent"; // Hacemos el fondo del botón transparente
+
+    let $img = document.createElement("img");
+    $img.src = imageSrc;
+    $img.style.width = "100%";
+    $img.style.height = "100%";
+
+    $button.appendChild($img);
+
+    // Agregar evento de clic al botón
+    $button.addEventListener("click", function() {
+        handleAnswerClick($button, answerNumber);  // Llamar función para manejar el clic
+    });
+
+    return $button;
+}
+
+// Función para manejar los clics en las respuestas
+function handleAnswerClick(buttonElement, answerNumber) {
+    // Si ya hay un botón seleccionado, quitamos la selección
+    if (selectedButton) {
+        selectedButton.style.border = "";  // Eliminar cualquier borde del botón previamente seleccionado
+    }
+
+    // Establecer el nuevo botón seleccionado
+    selectedButton = buttonElement;
+    selectedButton.style.border = "5px solid green";  // Agregar un borde verde al botón seleccionado
+
+    console.log("Respuesta seleccionada: " + answerNumber);
+    // Aquí puedes agregar lógica para validar la respuesta o realizar cualquier otra acción
+}
+
+
+/*
 function display_qa() {
     limpiar()
     const $tr = document.createElement("tr");
@@ -125,4 +202,4 @@ function display_qa() {
     $_cuerpo_tabla.appendChild($tRes4);
     $_cuerpo_tabla.appendChild($tr);
 
-}
+}*/
