@@ -23,7 +23,11 @@ function monas(){
     //iniciarTemporizador();
     const $tr = document.createElement("tr");
     let $tMona = document.createElement("img");
-    $tMona.src = ("img/_girl/_porttrait/a("+mona+").png")
+
+    const numImages = 18;
+    const randomIndex = Math.floor(Math.random() * numImages) + 1;
+
+    $tMona.src = ("img/_girl/_porttrait/a("+randomIndex+").png")
     $tMona.style.width = "100%";
     $tMona.style.height = "100%";
     //$tMona.style.justifyContent = "space-around";
