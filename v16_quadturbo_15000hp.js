@@ -4,7 +4,7 @@ var nameUser = document.getElementById("_nombre_user");
 let numeroAct = 0;
 let puntaje=0;
 var nombre = "";
-let tiempoLimite = 6; 
+let tiempoLimite = 5; 
 let tiempoTranscurrido = 0; 
 let temporizador;
 let temporizadorElement = document.getElementById("temporizador"); 
@@ -15,7 +15,6 @@ let puntos = 0;
 let puntosLabel = document.getElementById("_puntuacion_user"); 
 const $_tempo = document.querySelector("#temporizador");
 let mona=2;
-
 
 
 function monas(){
@@ -111,7 +110,7 @@ function siguiente_text(){
 }
 
 function display_qa() {
-    $_tempo.style.display="none";
+    //$_tempo.style.display="";
     limpiar(); 
     const $tr = document.createElement("tr"); 
 
