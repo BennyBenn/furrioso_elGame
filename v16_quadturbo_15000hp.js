@@ -2,6 +2,7 @@ const $_cuerpo_tabla = document.querySelector("#_cuerpo_tabla");
 var nameUser = document.getElementById("_nombre_user");
 let numeroAct = 1;
 let numeroAct1 = 1;
+let puntaje=0;
 var nombre = "";
 let tiempoLimite = 6; // tiempo límite en segundos
 let tiempoTranscurrido = 0; // tiempo transcurrido en segundos
@@ -83,6 +84,8 @@ function siguente_p() {
 
 let selectedButton = null; // Variable para guardar el botón seleccionado
 let textoIndex = 1; // Variable para controlar el texto o sección actual
+let puntos = 0; // Variable para acumular puntos
+let puntosLabel = document.getElementById("_puntuacion_user"); // Label para mostrar los puntos acumulados
 
 // Función para mostrar preguntas y respuestas en la tabla
 function display_qa() {
@@ -152,27 +155,25 @@ function handleAnswerClick(buttonElement, answerNumber) {
     // Agregar un borde verde o rojo según la respuesta seleccionada
     if (answerNumber === 2) {
         buttonElement.style.border = "5px solid green"; // Borde verde para la respuesta 2
+        puntos += 100; // Acumular puntos por la respuesta correcta
+        puntosLabel.innerText = "Puntos: " + puntos; // Mostrar puntos en el label
+
+        // Incrementar el número de la pregunta y manejar el avance
+        numeroAct++; // Incrementar el número de la pregunta
+
+        // Si el número de la pregunta es mayor que 4, avanzar al siguiente texto
+        if (numeroAct > 4) {
+            numeroAct = 1; // Reiniciar el número de la pregunta
+            textoIndex++; // Avanzar al siguiente texto o sección
+        }
+
+        display_qa(); // Mostrar la siguiente pregunta
     } else {
         buttonElement.style.border = "5px solid red"; // Borde rojo para otras respuestas
     }
 
     // Actualiza el botón seleccionado
     selectedButton = buttonElement;
-
-    // Incrementar el número de la pregunta y manejar el avance
-    if (numeroAct1 >= 3) {
-        numeroAct++; // Incrementar el número de la pregunta
-
-        if (numeroAct > 4) { // Si el número de la pregunta es mayor que 4
-            numeroAct = 1; // Reiniciar el número de la pregunta
-            textoIndex++; // Avanzar al siguiente texto o sección
-        }
-
-        numeroAct1 = 1; // Reiniciar el número de respuestas
-        display_qa(); // Mostrar la siguiente pregunta
-    } else {
-        numeroAct1++; // Incrementar el número de respuestas
-    }
 }
 
 // Inicializar la primera pregunta
