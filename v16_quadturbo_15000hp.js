@@ -67,6 +67,7 @@ function iniciarTemporizador() {
             tiempoTranscurrido = 0;
         }
     }, 1000); 
+    tiempoTranscurrido = 0;
 }
 
 function display_text() {
