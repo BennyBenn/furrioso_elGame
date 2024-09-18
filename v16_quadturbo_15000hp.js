@@ -93,22 +93,22 @@ function display_qa() {
     $_cuerpo_tabla.appendChild($tPregunta);
     $_cuerpo_tabla.appendChild($tr);
 
-    // Respuesta 1
+ 
     let $buttonRes1 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r1.png", 1);
     $_cuerpo_tabla.appendChild($buttonRes1);
     $_cuerpo_tabla.appendChild($tr);
 
-    // Respuesta 2
+  
     let $buttonRes2 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r2.png", 2);
     $_cuerpo_tabla.appendChild($buttonRes2);
     $_cuerpo_tabla.appendChild($tr);
 
-    // Respuesta 3
+   
     let $buttonRes3 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r3.png", 3);
     $_cuerpo_tabla.appendChild($buttonRes3);
     $_cuerpo_tabla.appendChild($tr);
 
-    // Respuesta 4
+  
     let $buttonRes4 = createAnswerButton("img/_quest/texto" + numeroAct + "/pregunta " + numeroAct + "/respuestas/r4.png", 4);
     $_cuerpo_tabla.appendChild($buttonRes4);
     $_cuerpo_tabla.appendChild($tr);
@@ -119,9 +119,9 @@ function createAnswerButton(imageSrc, answerNumber) {
     let $button = document.createElement("button");
     $button.style.width = "100%";
     $button.style.height = "20%";
-    $button.style.padding = "0"; // Elimina cualquier padding extra para que la imagen llene todo el botón
+    $button.style.padding = "0"; 
     $button.style.border = "none"; // Quita el borde por defecto del botón
-    $button.style.backgroundColor = "transparent"; // Hacemos el fondo del botón transparente
+    $button.style.backgroundColor = "transparent";
 
     let $img = document.createElement("img");
     $img.src = imageSrc;
@@ -138,17 +138,16 @@ function createAnswerButton(imageSrc, answerNumber) {
     return $button;
 }
 
-// Función para manejar los clics en las respuestas
+
 function handleAnswerClick(buttonElement, answerNumber) {
-    // Si ya hay un botón seleccionado, quitamos la selección
+   
     if (selectedButton) {
         selectedButton.style.border = "";  // Eliminar cualquier borde del botón previamente seleccionado
     }
 
     // Establecer el nuevo botón seleccionado
     selectedButton = buttonElement;
-    selectedButton.style.border = "5px solid green";  // Agregar un borde verde al botón seleccionado
+    selectedButton.style.border = "5px solid green";  // Agregar un borde verde 
 
-    console.log("Respuesta seleccionada: " + answerNumber);
-    // Aquí puedes agregar lógica para validar la respuesta o realizar cualquier otra acción
+
 }
