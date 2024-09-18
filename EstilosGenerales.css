@@ -442,12 +442,22 @@
     box-shadow: 1px 1px 40px;
     justify-content: space-around;
     padding: 0.5rem 1rem 0.5rem 1rem;
+    width: 100%;
+}
+.card label{
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: monospace;
+}
+.card span{
+    size: 50px;
 }
 
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 0.5rem;
+    justify-content: space-around;
 }
 
 .card-header {
@@ -508,6 +518,9 @@ body::before {
     /* opacidad 50% */
 }
 
+#_cuerpo_tabla{
+    margin-top: 5%;
+}
 .d-none {
     display: none;
 }

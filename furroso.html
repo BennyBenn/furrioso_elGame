@@ -6,49 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JUEGO</title>
     <link rel="stylesheet" href="EstilosGenerales.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div class="col-md-12"> 
+    <div class="col-md-12">
         <br>
-        <div class="row">            
+        <div class="row">
             <div class="card">
-                <button onclick="display_text()">boton_preguntas</button>
+                <!-- <button onclick="display_text()">boton_preguntas</button>
                 <button onclick="display_qa()">boton_qa</button>
-                <button onclick="siguente_p()">siguiente p</button>
-                <label id="_nombre_user">Nombre</label>
+                <button onclick="siguente_p()">siguiente p</button>-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="fa fa-user" style="width: 25%;">&nbsp;<label id="_nombre_user"> Nombre</label> </span>
+                    </div>
+                    <div class=" col-md-5 text-center">
+                        <div class="card-header">
+                            <h5>Hoolie Poppie</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3  text-right">
+                        <span class="fa fa-sticky-note" align><label id="_puntuacion_user" align="right">puntaje: </label></span>
+                    </div>
+                </div>              
 
-                <label id="_puntuacion_user" align="right">puntaje: </label>
-                <div class="card-header">
-                    <h5>Hoolie Poppie</h5>
-                </div>
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 card-question">
-                            <div class="text-right" id="temporizador" style="position: absolute; top: 0; right: 0;">Tiempo transcurrido: </div>
+                            
                             <table border="0.01px">
-                                <tbody id="_cuerpo_tabla">                                      
-                                    
-                                </tbody>                                
+                                <tbody id="_cuerpo_tabla">
+
+                                </tbody>
                             </table>
                             <!-- <img src="img/img1.jpg" alt="#" width="20%"> -->
                         </div>
                         <div class="col-md-5 text-right">
+                            <div class="text-right" id="temporizador" style="position: absolute; top: 0; right: 0;">
+                                Tiempo transcurrido: </div>
+                                <br><br><br><br>
                             <table border="0.01px" align="center">
-                                <tbody id="_mona_china" >
-                                </tbody>                                
+                                <tbody id="_mona_china">
+                                </tbody>
                             </table>
                             <!-- <img src="img/img1.jpg" alt="#" width="30%"> -->
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
     <script src="v16_quadturbo_15000hp.js"></script>
 </body>
-<footer class="fo text-center"><h2>Copyriht@ Equipo1</h2></footer>
+<footer class="fo text-center">
+    <h2>Copyriht@ Equipo1</h2>
+</footer>
 
 
 </html>
